@@ -10,8 +10,4 @@ if __name__ == '__main__':
     mi.CargaIntegrantes()
     print('Se han cargado los integrantes de proyectos.')
     mp.CalculaPuntaje(mi.GetLista())
-    # Tabla informe
-    # Info proyecto
-    # se ve la info del proyecto, datos, integrantes, etc.
-    # Observaciones
-    
+    mp.RankProyectos()
