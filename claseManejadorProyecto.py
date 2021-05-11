@@ -11,7 +11,7 @@ class ManejadorProyecto:
                 return i
     def CargaProyectos(self):
         archivo = open('proyectos.csv')
-        reader = csv.reader(archivo, delimiter=':')
+        reader = csv.reader(archivo, delimiter=';')
         ban = True
         for fila in reader:
             if ban:
@@ -23,15 +23,17 @@ class ManejadorProyecto:
                 unProyecto = Proyecto(idProy, titu, palclav)
                 self.AgregaProy(unProyecto)
     def CalculaPuntaje(self,listaIntegrantes):
-        for i in self.__listaProyectos:
+        for i in range(len(self.__listaProyectos)):
             acum = 0 # Variable acumulador para puntaje total
             cantint = 0 # Cantidad de integrantes
             banDirector = False # Bandera para indicar si el proyecto tiene director (False por defecto)
             banCatDirector = False # Bandera para indicar si el director es de categoria I o II (False por defecto)
             banCoDirector = False # Bandera para indicar si el proyecto tiene codirector (False por defecto)
             banCatCoDirector = False # Bandera para indicar si el codirector es de categoria I, II, o III (False por defecto)
-            for j in listaIntegrantes: 
-                if self.__listaProyectos[i].GetIdProy == listaIntegrantes[j].GetIdIntegr(): 
+            print('Proyecto en revision: {}'.format(str(self.__listaProyectos[i].GetIdProy())))
+            print('Observaciones:')
+            for j in range(len(listaIntegrantes)): 
+                if self.__listaProyectos[i].GetIdProy() == listaIntegrantes[j].GetIdIntegr(): 
                     if listaIntegrantes[j].GetRol() == 'integrante': # Criterio: cantidad de integrantes
                         cantint += 1
                     if listaIntegrantes[j].GetRol() == 'director': # Criterio: tiene director y su categoría es I o II
@@ -66,5 +68,15 @@ class ManejadorProyecto:
                     print('El Proyecto debe tener un Codirector.')
             else:
                 acum -= 10 # El proyecto no tiene director o codirector
+            print('Puntaje obtenido:{}'.format(str(acum)))
+            print('------------------------------------------------------')
             self.__listaProyectos[i].SetPuntos(acum) # Registra los puntos
-        print('Se ha calculado el puntaje de los proyectos.')
+        print('Se ha registrado el puntaje de todos los proyectos.')
+    def RankProyectos(self):
+        print('Ranking de proyectos de mayor a menor puntaje:')
+        print('------------------------------------------------------')
+        self.__listaProyectos.sort(reverse=True) # Metodo de lista que la ordena de mayor a menor (se hizo sobrecarga de operadores antes)
+        for i in range(len(self.__listaProyectos)):
+            print('Puesto {}'.format(str(i+1)))
+            self.__listaProyectos[i].MostrarProyecto()
+            print('------------------------------------------------------')
