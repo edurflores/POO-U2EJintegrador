@@ -1,5 +1,5 @@
 class Integrante:
-    __idProyecto = ''
+    __idProyecto = '' # Id del proyecto al que pertenece
     __apellidoNombre = ''
     __dni = ''
     __categoriaInvestigacion = ''
