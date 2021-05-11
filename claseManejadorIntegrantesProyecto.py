@@ -12,7 +12,7 @@ class ManejadorIntegrantes:
         bandera = True
         for fila in reader:
             if bandera:
-                not bandera # Saltea la primera linea
+                bandera = not bandera # Saltea la primera linea
             else:
                 idProy = fila[0]
                 apeNom = fila[1]
@@ -23,3 +23,12 @@ class ManejadorIntegrantes:
                 self.AgregaIntegrante(unInvestigador)
     def GetLista(self):
         return self.__listaIntegrante
+    def MostrarIntegrantes(self):
+        print('Lista de integrantes.')
+        for i in range(len(self.__listaIntegrante)):
+            print('Integrante Nro. {}'.format(int(i+1)))
+            print('ID de proyecto en que esta:',self.__listaIntegrante[i].GetIdIntegr())
+            print('Apellido y nombre:{}'.format(str(self.__listaIntegrante[i].GetApeNom())))
+            print('DNI:{}'.format(str(self.__listaIntegrante[i].GetDni())))
+            print('Categoria:{}'.format(str(self.__listaIntegrante[i].GetCatInvest())))
+            print('Rol:{}'.format(str(self.__listaIntegrante[i].GetRol())))
