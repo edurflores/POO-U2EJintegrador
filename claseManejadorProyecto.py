@@ -22,6 +22,7 @@ class ManejadorProyecto:
                 palclav = fila[2]
                 unProyecto = Proyecto(idProy, titu, palclav)
                 self.AgregaProy(unProyecto)
+        archivo.close()
     def CalculaPuntaje(self,listaIntegrantes):
         for i in range(len(self.__listaProyectos)):
             acum = 0 # Variable acumulador para puntaje total
