@@ -21,6 +21,7 @@ class ManejadorIntegrantes:
                 rol = fila[4]
                 unInvestigador = Integrante(idProy,apeNom,docu,catInv,rol)
                 self.AgregaIntegrante(unInvestigador)
+        archivo.close()
     def GetLista(self):
         return self.__listaIntegrante
     def MostrarIntegrantes(self):
